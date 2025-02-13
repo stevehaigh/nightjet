@@ -13,7 +13,7 @@ url_to_check = f"https://www.nightjet.com/nj-booking-ocp/connection/8400058/8100
 @app.timer_trigger(
     schedule="0 0 */1 * * *",
     arg_name="myTimer",
-    run_on_startup=True,
+    run_on_startup=False,
     use_monitor=False,
 )
 def timer_trigger(myTimer: func.TimerRequest) -> None:
