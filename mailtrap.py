@@ -26,7 +26,7 @@ mail_payload = {
 try:
     # Send the email via Mailtrap's API
     headers = {
-        "Authorization": f"Bearer e594c343b75e7f83d161729142da7d8d",
+        "Authorization": f"Bearer xxxxxxxxxxxxxxxxxxxxxxxx",
         "Content-Type": "application/json"
     }
 
