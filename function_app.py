@@ -11,7 +11,7 @@ date_to_check = os.environ.get("DATE_TO_CHECK")
 url_to_check = f"https://www.nightjet.com/nj-booking-ocp/connection/8400058/8100108/{date_to_check}"
 
 @app.timer_trigger(
-    schedule="0 0 */1 * * *",
+    schedule="0 *5 * * * *",
     arg_name="myTimer",
     run_on_startup=False,
     use_monitor=False,
