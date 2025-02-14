@@ -9,8 +9,10 @@ app = func.FunctionApp()
 date_to_check = os.environ.get("DATE_TO_CHECK")
 url_to_check = f"https://www.nightjet.com/nj-booking-ocp/connection/8400058/8100108/{date_to_check}"
 
+schedule_chron_expression = os.environ.get("SCHEDULE_CHRON_EXPRESSION")
+
 @app.timer_trigger(
-    schedule="0 */5 * * * *",
+    schedule=schedule_chron_expression,
     arg_name="myTimer",
     run_on_startup=False,
     use_monitor=False,
@@ -64,7 +66,8 @@ def send_email():
     """
     try:
         subject = "🚂 NIGHTJET Tickets Now Available"
-        body_text = f'Tickets are available for {date_to_check}. Check the details at <a href="https://www.nightjet.com/en/ticket-buchen#/home">Nightjet Booking</a>'
+        body_text = f'Tickets are available for {date_to_check}. This is a reminder to check dates and reset this app :)'
+        ###Check the details at <a href="https://www.nightjet.com/en/ticket-buchen#/home">Nightjet Booking</a>'
 
         connection_string = os.environ.get("COMMUNICATION_SERVICES_CONNECTION_STRING")
         if not connection_string:
