@@ -143,11 +143,12 @@ def send_heartbeat():
         now = datetime.now()
         difference = now - heartbeat_time
 
-        # Only send email on Saturday if within 60 minutes of HEARTBEATTIME
+        # Only send email on specified day if within 60 minutes of HEARTBEATTIME
         # Get weekday from environment variable (default to 6/Sunday if not set)
         heartbeat_weekday = int(os.environ.get("HEARTBEAT_WEEKDAY", "6"))
         
-        if now.weekday() == heartbeat_weekday and difference.total_seconds() < 60 * 60:
+        # Check if it's the right weekday, the time is within 60 minutes after heartbeat_time
+        if now.weekday() == heartbeat_weekday and 0 <= difference.total_seconds() < 60 * 60:
             date_to_check = os.environ.get("DATE_TO_CHECK", "Unknown date")
             email_message = {
             "subject": "Nightjet Heartbeat",
